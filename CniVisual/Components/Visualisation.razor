@@ -198,37 +198,43 @@
             EmergencyServicesDisrupted = false;
 
             if (EnergyDisrupted)
-                await InitiateEnergyDisruption();       
-            if (TransportDisrupted)
-                await InitiateTransportDisruption();         
-            if (WaterDisrupted)
-                await InitiateWaterDisruption();
+                await InitiateEnergyDisruption();
+            else
+            {
+                if (TransportDisrupted)
+                    await InitiateTransportDisruption();
+                else
+                {
+                    if (WaterDisrupted)
+                        await InitiateWaterDisruption();
+                }
+            }
         }
     }
 
     private async Task InitiateWaterDisruption()
     {
-        EnergyLog = "Demand for energy supply too high for capacity, shutting down production to avoid disaster";
+        WaterLog= "A ransomware attack has caused all system regulating water flow to be disabled";
         await Task.Delay(1500);
-        WaterDisrupted = true;
-        WaterLog = "Electric pump for water treatment shut down because of blackout, unable to provide clean water";
+        EnergyDisrupted = true;
+        EnergyLog = "Energy production came to an halt in various generation facilities because water used for cooling stopped flowing, this is causing blackouts in certain areas";
         CommunicationsDisrupted = true;
-        CommunicationsLog = "Because of energy blackout most people are left with no internet or access to tv/radio";
+        CommunicationsLog = "Because of energy blackout some people are left with no internet or access to tv/radio";
         StateHasChanged();
         await Task.Delay(1000);
         EmergencyServicesDisrupted = true;
-        EmergencyServicesLog = "Because of disruption on communication services people are not able to get in touch with emergency services, hospitals had to stop surgical procedures due to the lack of treated water";
+        EmergencyServicesLog = "Because of disruption on communication services people are not able to get in touch with emergency services, hospitals had to stop surgical procedures due to the lack of water";
         StateHasChanged();
         await Task.Delay(1000);
         FoodDisrupted = true;
-        FoodLog = "Because of disruption on distribution of drinkable water and state of panic demand for food/water has increased over the amount currently available in supermarkets/shops, shops are unable to refrigerate goods because of lack of electricity";
+        FoodLog = "Some food outlets had to close because of the lack of water, panic buying of water has increased over the amount currently available in supermarkets/shops";
         StateHasChanged();
         await SimulationEnded.InvokeAsync(true);
     }
 
     private async Task InitiateTransportDisruption()
     {
-        EnergyLog = "Demand for energy supply too high for capacity, shutting down production to avoid disaster";
+        TransportLog = "Demand for energy supply too high for capacity, shutting down production to avoid disaster";
         await Task.Delay(1500);
         WaterDisrupted = true;
         WaterLog = "Electric pump for water treatment shut down because of blackout, unable to provide clean water";

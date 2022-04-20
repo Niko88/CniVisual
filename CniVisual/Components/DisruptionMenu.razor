@@ -85,22 +85,25 @@
 
     private void Disrupt(DisruptionType type)
     {
-        SimulationEnded = false;
-        ResetStyles();
-        switch (type)
+        if (type != GetDisruption())
         {
-            case DisruptionType.Energy:
-                EnergyDisrupted = true;
-                break;
-            case DisruptionType.Water:
-                WaterDisrupted = true;
-                break;
-            case DisruptionType.Transport:
-                TransportDisrupted = true;
-                break;
+            SimulationEnded = false;
+            ResetStyles();
+            switch (type)
+            {
+                case DisruptionType.Energy:
+                    EnergyDisrupted = true;
+                    break;
+                case DisruptionType.Water:
+                    WaterDisrupted = true;
+                    break;
+                case DisruptionType.Transport:
+                    TransportDisrupted = true;
+                    break;
+            }
+            DisruptionApplied = true;
+            StatusMessage = $"{type} infrastructure disrupted!";
         }
-        DisruptionApplied = true;
-        StatusMessage = $"{type} infrastructure disrupted!";
     }
 
     private void ResetStyles()
