@@ -1,0 +1,278 @@
+﻿@using CniVisual.Enums
+<div class="row">
+    <div class="col-4">
+        <RadzenCard class="m-3">
+            <h3 class="h5">Energy</h3>
+            <div class="d-flex flex-row">
+                <RadzenImage Path="images/energyinfr.jpg" Class="rounded-circle float-left mr-3" Style="width: 100px; height: 100px;" />
+                <div>
+                    <div>Status
+                        @if (EnergyDisrupted)
+                        {
+
+                            <RadzenButton ButtonStyle=ButtonStyle.Warning>
+                                <span style="color: black;">disrupted</span>
+                            </RadzenButton>
+
+                        }
+                        else
+                        {
+                            <RadzenButton ButtonStyle=ButtonStyle.Success>
+                                <span style="color: black;">OK </span>
+                            </RadzenButton>
+                        }
+                    </div>
+                    <div class="mt-3">Status Log</div>
+                    @EnergyLog
+                </div>
+            </div>
+        </RadzenCard>
+        <RadzenCard class="m-3">
+            <h3 class="h5">Water</h3>
+            <div class="d-flex flex-row">
+                <RadzenImage Path="images/waterinfr.jpeg" Class="rounded-circle float-left mr-3" Style="width: 100px; height: 100px;" />
+                <div>
+                    <div>Status
+                        @if (WaterDisrupted)
+                        {
+                            <RadzenButton ButtonStyle=ButtonStyle.Warning>
+                                <span style="color: black;">disrupted</span>
+                            </RadzenButton>
+
+                        }
+                        else
+                        {
+                            <RadzenButton ButtonStyle=ButtonStyle.Success>
+                                <span style="color: black;">OK </span>
+                            </RadzenButton>
+                        }
+                    </div>
+                    <div class="mt-3">Status Log</div>
+                    @WaterLog
+                </div>
+            </div>
+        </RadzenCard>
+    </div>
+    <div class="col-4">
+        <RadzenCard class="m-3">
+            <h3 class="h5">Transport</h3>
+            <div class="d-flex flex-row">
+                <RadzenImage Path="images/transportinfr.jpg" Class="rounded-circle float-left mr-3" Style="width: 100px; height: 100px;" />
+                <div>
+                    <div>Status
+                        @if (TransportDisrupted)
+                        {
+                            <RadzenButton ButtonStyle=ButtonStyle.Warning>
+                                <span style="color: black;">disrupted</span>
+                            </RadzenButton>
+                        }
+                        else
+                        {
+                            <RadzenButton ButtonStyle=ButtonStyle.Success>
+                                <span style="color: black;">OK </span>
+                            </RadzenButton>
+                        }
+                    </div>
+                    <div class="mt-3">Status Log</div>
+                    @TransportLog
+                </div>
+            </div>
+        </RadzenCard>
+        <RadzenCard class="m-3">
+            <h3 class="h5">Communications</h3>
+            <div class="d-flex flex-row">
+                <RadzenImage Path="images/commsinfr.jpg" Class="rounded-circle float-left mr-3" Style="width: 100px; height: 100px;" />
+                <div>
+                    <div>Status
+                        @if (CommunicationsDisrupted)
+                        {
+                            <RadzenButton ButtonStyle=ButtonStyle.Warning>
+                                <span style="color: black;">disrupted</span>
+                            </RadzenButton>
+
+                        }
+                        else
+                        {
+                            <RadzenButton ButtonStyle=ButtonStyle.Success>
+                                <span style="color: black;">OK </span>
+                            </RadzenButton>
+                        }
+                    </div>
+                    <div class="mt-3">Status Log</div>
+                    @CommunicationsLog
+                </div>
+            </div>
+        </RadzenCard>
+    </div>
+    <div class="col-4">
+        <RadzenCard class="m-3">
+            <h3 class="h5">Food</h3>
+            <div class="d-flex flex-row">
+                <RadzenImage Path="images/foodinfr.jpg" Class="rounded-circle float-left mr-3" Style="width: 100px; height: 100px;" />
+                <div>
+                    <div>Status
+                        @if (FoodDisrupted)
+                        {
+                            <RadzenButton ButtonStyle=ButtonStyle.Warning>
+                                <span style="color: black;">disrupted</span>
+                            </RadzenButton>
+
+                        }
+                        else
+                        {
+                            <RadzenButton ButtonStyle=ButtonStyle.Success>
+                                <span style="color: black;">OK </span>
+                            </RadzenButton>
+                        }
+                    </div>
+                    <div class="mt-3">Status Log</div>
+                    @FoodLog
+                </div>
+            </div>
+        </RadzenCard>
+        <RadzenCard class="m-3">
+            <h3 class="h5">Emergency Services</h3>
+            <div class="d-flex flex-row">
+                <RadzenImage Path="images/emergencyinfr.jpg" Class="rounded-circle float-left mr-3" Style="width: 100px; height: 100px;" />
+                <div>
+                    <div>Status 
+                        @if (EmergencyServicesDisrupted)
+                        {
+                            <RadzenButton ButtonStyle=ButtonStyle.Warning>
+                                <span style="color: black;">disrupted</span>
+                            </RadzenButton>
+
+                        }
+                        else
+                        {
+                            <RadzenButton ButtonStyle=ButtonStyle.Success>
+                                <span style="color: black;">OK </span>
+                            </RadzenButton>
+                        }
+                    </div>
+                    <div class="mt-3">Status Log</div>
+                    @EmergencyServicesLog
+                </div>
+            </div>
+        </RadzenCard>
+    </div>
+</div>
+
+@code
+{
+    [Parameter]
+    public DisruptionType DisruptionApplied { get; set; } 
+    [Parameter]
+    public EventCallback<bool> SimulationEnded { get; set; }
+    public bool EnergyDisrupted { get; set; }
+    public bool TransportDisrupted { get; set; }
+    public bool WaterDisrupted { get; set; }
+    public bool FoodDisrupted { get; set; }
+    public bool CommunicationsDisrupted { get; set; }
+    public bool EmergencyServicesDisrupted { get; set; }
+    public string EnergyLog { get; set; }
+    public string WaterLog { get; set; }
+    public string CommunicationsLog { get; set; }
+    public string EmergencyServicesLog { get; set; }
+    public string FoodLog { get; set; }
+    public string TransportLog { get; set; }
+
+    protected override void OnInitialized()
+    {
+        CurrentSimulation = DisruptionApplied;
+    }
+
+    public DisruptionType CurrentSimulation { get; set; }
+
+    protected override async void OnParametersSet()
+    {
+        if (DisruptionApplied != CurrentSimulation)
+        {
+            CurrentSimulation = DisruptionApplied;
+            ResetLogs();
+            EnergyDisrupted =  DisruptionApplied == DisruptionType.Energy;
+            TransportDisrupted =  DisruptionApplied == DisruptionType.Transport;
+            WaterDisrupted =  DisruptionApplied == DisruptionType.Water;
+            FoodDisrupted = false;
+            CommunicationsDisrupted = false;
+            EmergencyServicesDisrupted = false;
+
+            if (EnergyDisrupted)
+                await InitiateEnergyDisruption();       
+            if (TransportDisrupted)
+                await InitiateTransportDisruption();         
+            if (WaterDisrupted)
+                await InitiateWaterDisruption();
+        }
+    }
+
+    private async Task InitiateWaterDisruption()
+    {
+        EnergyLog = "Demand for energy supply too high for capacity, shutting down production to avoid disaster";
+        await Task.Delay(1500);
+        WaterDisrupted = true;
+        WaterLog = "Electric pump for water treatment shut down because of blackout, unable to provide clean water";
+        CommunicationsDisrupted = true;
+        CommunicationsLog = "Because of energy blackout most people are left with no internet or access to tv/radio";
+        StateHasChanged();
+        await Task.Delay(1000);
+        EmergencyServicesDisrupted = true;
+        EmergencyServicesLog = "Because of disruption on communication services people are not able to get in touch with emergency services, hospitals had to stop surgical procedures due to the lack of treated water";
+        StateHasChanged();
+        await Task.Delay(1000);
+        FoodDisrupted = true;
+        FoodLog = "Because of disruption on distribution of drinkable water and state of panic demand for food/water has increased over the amount currently available in supermarkets/shops, shops are unable to refrigerate goods because of lack of electricity";
+        StateHasChanged();
+        await SimulationEnded.InvokeAsync(true);
+    }
+
+    private async Task InitiateTransportDisruption()
+    {
+        EnergyLog = "Demand for energy supply too high for capacity, shutting down production to avoid disaster";
+        await Task.Delay(1500);
+        WaterDisrupted = true;
+        WaterLog = "Electric pump for water treatment shut down because of blackout, unable to provide clean water";
+        CommunicationsDisrupted = true;
+        CommunicationsLog = "Because of energy blackout most people are left with no internet or access to tv/radio";
+        StateHasChanged();
+        await Task.Delay(1000);
+        EmergencyServicesDisrupted = true;
+        EmergencyServicesLog = "Because of disruption on communication services people are not able to get in touch with emergency services, hospitals had to stop surgical procedures due to the lack of treated water";
+        StateHasChanged();
+        await Task.Delay(1000);
+        FoodDisrupted = true;
+        FoodLog = "Because of disruption on distribution of drinkable water and state of panic demand for food/water has increased over the amount currently available in supermarkets/shops, shops are unable to refrigerate goods because of lack of electricity";
+        StateHasChanged();
+        await SimulationEnded.InvokeAsync(true);
+    }
+
+    private void ResetLogs()
+    {
+        EnergyLog = string.Empty;
+        WaterLog = string.Empty;
+        TransportLog = string.Empty;
+        FoodLog = string.Empty;
+        EmergencyServicesLog = string.Empty;
+        CommunicationsLog = string.Empty;
+    }
+
+    private async Task InitiateEnergyDisruption()
+    {
+        EnergyLog = "Demand for energy supply too high for capacity, shutting down production to avoid disaster";
+        await Task.Delay(1500);
+        WaterDisrupted = true;
+        WaterLog = "Electric pump for water treatment shut down because of blackout, unable to provide clean water";
+        CommunicationsDisrupted = true;
+        CommunicationsLog = "Because of energy blackout most people are left with no internet or access to tv/radio";
+        StateHasChanged();
+        await Task.Delay(1000);
+        EmergencyServicesDisrupted = true;
+        EmergencyServicesLog = "Because of disruption on communication services people are not able to get in touch with emergency services, hospitals had to stop surgical procedures due to the lack of treated water";
+        StateHasChanged();
+        await Task.Delay(1000);
+        FoodDisrupted = true;
+        FoodLog = "Because of disruption on distribution of drinkable water and state of panic demand for food/water has increased over the amount currently available in supermarkets/shops, shops are unable to refrigerate goods because of lack of electricity";
+        StateHasChanged();
+        await SimulationEnded.InvokeAsync(true);
+    }
+}

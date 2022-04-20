@@ -1,0 +1,112 @@
+﻿@using CniVisual.Enums
+<div class="row">
+    <RadzenCard class="m-3">
+        <h3 class="h5">Disrupt</h3>
+        @if (SimulationEnded)
+        {
+            <div class="d-flex flex-row">
+                <div class="row mb-3">
+                    <RadzenButton Click=@(args => Disrupt(DisruptionType.Energy) )  Image="images/energy.png" style="width: 217px;" ButtonStyle=@GetStyle(DisruptionType.Energy)>
+                        <span style="color: black;">Energy</span>
+                        <RadzenImage Path="images/energy.png" Style="width: 20px; height: 20px; margin-left: 8px;"/>
+                    </RadzenButton>
+                </div>
+                <div class="row mb-3">
+                    <RadzenButton Click=@(args => Disrupt(DisruptionType.Transport) )   Image="images/truck.png" style="width: 217px;" ButtonStyle=@GetStyle(DisruptionType.Transport)>
+                        <span style="color: black">Transport</span>
+                        <RadzenImage Path="images/truck.png" Style="width: 20px; height: 20px; margin-left: 8px;"/>
+                    </RadzenButton>
+                </div>
+                <div class="row mb-3">
+                    <RadzenButton Click=@(args => Disrupt(DisruptionType.Water) )  Image="images/tap.png" style="width: 217px;" ButtonStyle=@GetStyle(DisruptionType.Water)>
+                        <span style="color: black">Water</span>
+                        <RadzenImage Path="images/tap.png" Style="width: 20px; height: 20px; margin-left: 8px;"/>
+                    </RadzenButton>
+                </div>
+            </div>
+        }
+        else
+        {
+            <div class="alert alert-info">Simulation Ongoing..</div>
+        }
+    </RadzenCard>
+    <RadzenCard class="m-3">
+        <div class="d-flex flex-row">
+            <div class="row mb-3">
+                <RadzenButton ButtonStyle=@GetStyle(DisruptionType.General)>
+                    <span style="color: black;">@StatusMessage</span>
+                </RadzenButton>
+            </div>
+        </div>
+    </RadzenCard>
+</div>
+
+<Visualisation DisruptionApplied=GetDisruption() SimulationEnded="()=>SimulationEnded = true"></Visualisation>
+@code
+{
+    public bool EnergyDisrupted { get; set; }
+    public bool WaterDisrupted { get; set; }
+    public bool TransportDisrupted { get; set; }
+    public bool DisruptionApplied { get; set; }
+    public bool SimulationEnded { get; set; } = true;
+    public string StatusMessage { get; set; } = "All Systems Clear";
+
+    private  ButtonStyle GetStyle(DisruptionType type)
+    {
+        switch (type)
+        {
+            case DisruptionType.Energy:
+                return EnergyDisrupted?
+                    ButtonStyle.Danger:
+                    ButtonStyle.Warning;
+            case DisruptionType.Water:
+                return WaterDisrupted?
+                    ButtonStyle.Danger:
+                    ButtonStyle.Secondary;
+            case DisruptionType.Transport:
+                return TransportDisrupted?
+                    ButtonStyle.Danger:
+                    ButtonStyle.Light;              
+            default:
+                return DisruptionApplied?
+                    ButtonStyle.Danger:
+                    ButtonStyle.Success;  
+        }
+    }
+
+    private DisruptionType GetDisruption()
+    {
+        if (DisruptionApplied)
+        {
+            return EnergyDisrupted ? DisruptionType.Energy : WaterDisrupted ? DisruptionType.Water : DisruptionType.Transport;
+        }
+        return DisruptionType.None;
+    }
+
+    private void Disrupt(DisruptionType type)
+    {
+        SimulationEnded = false;
+        ResetStyles();
+        switch (type)
+        {
+            case DisruptionType.Energy:
+                EnergyDisrupted = true;
+                break;
+            case DisruptionType.Water:
+                WaterDisrupted = true;
+                break;
+            case DisruptionType.Transport:
+                TransportDisrupted = true;
+                break;
+        }
+        DisruptionApplied = true;
+        StatusMessage = $"{type} infrastructure disrupted!";
+    }
+
+    private void ResetStyles()
+    {
+        EnergyDisrupted = WaterDisrupted = TransportDisrupted = false;
+    }
+
+}
+
