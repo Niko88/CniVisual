@@ -236,20 +236,24 @@
 
     private async Task InitiateTransportDisruption()
     {
-        TransportLog = "Demand for energy supply too high for capacity, shutting down production to avoid disaster";
+        TransportLog = "A shortage on HGV drivers along with a series of strikes throughout the sector has determined a major disruption in the transportation infrastructure";
         await Task.Delay(1500);
+        FoodDisrupted = true;
+        FoodLog = "Disruption of the transportation system is making it difficult for goods to get to outlets and/or final customers. This is fueling panic buying making the situation worse";
         WaterDisrupted = true;
-        WaterLog = "Electric pump for water treatment shut down because of blackout, unable to provide clean water";
-        CommunicationsDisrupted = true;
-        CommunicationsLog = "Because of energy blackout most people are left with no internet or access to tv/radio";
+        WaterLog = "Businesses and individuals using a decentralised water system are struggling to get water delivered and/or waste water collected";
         StateHasChanged();
         await Task.Delay(1000);
         EmergencyServicesDisrupted = true;
-        EmergencyServicesLog = "Because of disruption on communication services people are not able to get in touch with emergency services, hospitals had to stop surgical procedures due to the lack of treated water";
+        EmergencyServicesLog = "Hospitals are struggling to get medicines/food/equipment delivered and had to postpone some procedures. Emergency services are also being crippled by fuel shortages.";
         StateHasChanged();
         await Task.Delay(1000);
-        FoodDisrupted = true;
-        FoodLog = "Because of disruption on distribution of drinkable water and state of panic demand for food/water has increased over the amount currently available in supermarkets/shops, shops are unable to refrigerate goods because of lack of electricity";
+        EnergyDisrupted = true;
+        EnergyLog = "Fuel/coal/gas used for energy production is not arriving, load shedding is being performed on some parts of the country";
+        StateHasChanged();        
+        await Task.Delay(1000);
+        CommunicationsDisrupted = true;
+        CommunicationsLog = "Because of load shedding some people are left with no internet or access to tv/radio for a few hours each day";
         StateHasChanged();
         await SimulationEnded.InvokeAsync(true);
     }
