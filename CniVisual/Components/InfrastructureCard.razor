@@ -1,0 +1,32 @@
+﻿<RadzenCard class="m-3">
+    <h3 class="h5">@Title</h3>
+    <div class="d-flex flex-row">
+        <RadzenImage Path=@Image Class="rounded-circle float-left mr-3" Style="width: 100px; height: 100px;" />
+        <div>
+                @if (Disrupted)
+                {
+                    <div class="alert alert-warning">Status: Disrupted</div>
+                    <div class="mt-3">Events Log</div>
+                    <div class="alert alert-light">
+                        @Text
+                    </div>
+                }
+                else
+                {
+                    <div class="alert alert-success">Status: OK</div>
+
+                }
+        </div>
+    </div>
+</RadzenCard>
+
+@code {
+    [Parameter]
+    public string Title { get; set; } 
+    [Parameter]
+    public string Text { get; set; }
+    [Parameter]
+    public string Image { get; set; }   
+    [Parameter]
+    public bool Disrupted { get; set; }
+}

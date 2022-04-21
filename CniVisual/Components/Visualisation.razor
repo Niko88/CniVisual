@@ -1,160 +1,16 @@
 ﻿@using CniVisual.Enums
 <div class="row">
     <div class="col-4">
-        <RadzenCard class="m-3">
-            <h3 class="h5">Energy</h3>
-            <div class="d-flex flex-row">
-                <RadzenImage Path="images/energyinfr.jpg" Class="rounded-circle float-left mr-3" Style="width: 100px; height: 100px;" />
-                <div>
-                    <div>Status
-                        @if (EnergyDisrupted)
-                        {
-
-                            <RadzenButton ButtonStyle=ButtonStyle.Warning>
-                                <span style="color: black;">disrupted</span>
-                            </RadzenButton>
-
-                        }
-                        else
-                        {
-                            <RadzenButton ButtonStyle=ButtonStyle.Success>
-                                <span style="color: black;">OK </span>
-                            </RadzenButton>
-                        }
-                    </div>
-                    <div class="mt-3">Status Log</div>
-                    @EnergyLog
-                </div>
-            </div>
-        </RadzenCard>
-        <RadzenCard class="m-3">
-            <h3 class="h5">Water</h3>
-            <div class="d-flex flex-row">
-                <RadzenImage Path="images/waterinfr.jpeg" Class="rounded-circle float-left mr-3" Style="width: 100px; height: 100px;" />
-                <div>
-                    <div>Status
-                        @if (WaterDisrupted)
-                        {
-                            <RadzenButton ButtonStyle=ButtonStyle.Warning>
-                                <span style="color: black;">disrupted</span>
-                            </RadzenButton>
-
-                        }
-                        else
-                        {
-                            <RadzenButton ButtonStyle=ButtonStyle.Success>
-                                <span style="color: black;">OK </span>
-                            </RadzenButton>
-                        }
-                    </div>
-                    <div class="mt-3">Status Log</div>
-                    @WaterLog
-                </div>
-            </div>
-        </RadzenCard>
+        <InfrastructureCard Title="Energy" Text="@EnergyLog" Disrupted="EnergyDisrupted" Image="images/energyinfr.jpg"></InfrastructureCard>
+        <InfrastructureCard Title="Water" Text="@WaterLog" Disrupted="WaterDisrupted" Image="images/waterinfr.jpeg"></InfrastructureCard>
     </div>
+  <div class="col-4">
+        <InfrastructureCard Title="Transport" Text="@TransportLog" Disrupted="TransportDisrupted" Image="images/transportinfr.jpg"></InfrastructureCard>
+        <InfrastructureCard Title="Communications" Text="@CommunicationsLog" Disrupted="CommunicationsDisrupted" Image="images/foodinfr.jpg"></InfrastructureCard>
+  </div>  
     <div class="col-4">
-        <RadzenCard class="m-3">
-            <h3 class="h5">Transport</h3>
-            <div class="d-flex flex-row">
-                <RadzenImage Path="images/transportinfr.jpg" Class="rounded-circle float-left mr-3" Style="width: 100px; height: 100px;" />
-                <div>
-                    <div>Status
-                        @if (TransportDisrupted)
-                        {
-                            <RadzenButton ButtonStyle=ButtonStyle.Warning>
-                                <span style="color: black;">disrupted</span>
-                            </RadzenButton>
-                        }
-                        else
-                        {
-                            <RadzenButton ButtonStyle=ButtonStyle.Success>
-                                <span style="color: black;">OK </span>
-                            </RadzenButton>
-                        }
-                    </div>
-                    <div class="mt-3">Status Log</div>
-                    @TransportLog
-                </div>
-            </div>
-        </RadzenCard>
-        <RadzenCard class="m-3">
-            <h3 class="h5">Communications</h3>
-            <div class="d-flex flex-row">
-                <RadzenImage Path="images/commsinfr.jpg" Class="rounded-circle float-left mr-3" Style="width: 100px; height: 100px;" />
-                <div>
-                    <div>Status
-                        @if (CommunicationsDisrupted)
-                        {
-                            <RadzenButton ButtonStyle=ButtonStyle.Warning>
-                                <span style="color: black;">disrupted</span>
-                            </RadzenButton>
-
-                        }
-                        else
-                        {
-                            <RadzenButton ButtonStyle=ButtonStyle.Success>
-                                <span style="color: black;">OK </span>
-                            </RadzenButton>
-                        }
-                    </div>
-                    <div class="mt-3">Status Log</div>
-                    @CommunicationsLog
-                </div>
-            </div>
-        </RadzenCard>
-    </div>
-    <div class="col-4">
-        <RadzenCard class="m-3">
-            <h3 class="h5">Food</h3>
-            <div class="d-flex flex-row">
-                <RadzenImage Path="images/foodinfr.jpg" Class="rounded-circle float-left mr-3" Style="width: 100px; height: 100px;" />
-                <div>
-                    <div>Status
-                        @if (FoodDisrupted)
-                        {
-                            <RadzenButton ButtonStyle=ButtonStyle.Warning>
-                                <span style="color: black;">disrupted</span>
-                            </RadzenButton>
-
-                        }
-                        else
-                        {
-                            <RadzenButton ButtonStyle=ButtonStyle.Success>
-                                <span style="color: black;">OK </span>
-                            </RadzenButton>
-                        }
-                    </div>
-                    <div class="mt-3">Status Log</div>
-                    @FoodLog
-                </div>
-            </div>
-        </RadzenCard>
-        <RadzenCard class="m-3">
-            <h3 class="h5">Emergency Services</h3>
-            <div class="d-flex flex-row">
-                <RadzenImage Path="images/emergencyinfr.jpg" Class="rounded-circle float-left mr-3" Style="width: 100px; height: 100px;" />
-                <div>
-                    <div>Status 
-                        @if (EmergencyServicesDisrupted)
-                        {
-                            <RadzenButton ButtonStyle=ButtonStyle.Warning>
-                                <span style="color: black;">disrupted</span>
-                            </RadzenButton>
-
-                        }
-                        else
-                        {
-                            <RadzenButton ButtonStyle=ButtonStyle.Success>
-                                <span style="color: black;">OK </span>
-                            </RadzenButton>
-                        }
-                    </div>
-                    <div class="mt-3">Status Log</div>
-                    @EmergencyServicesLog
-                </div>
-            </div>
-        </RadzenCard>
+        <InfrastructureCard Title="Food" Text="@FoodLog" Disrupted="FoodDisrupted" Image="images/foodinfr.jpg"></InfrastructureCard>
+        <InfrastructureCard Title="Emergency Services" Text="@EmergencyServicesLog" Disrupted="EmergencyServicesDisrupted" Image="images/emergencyinfr.jpg"></InfrastructureCard>
     </div>
 </div>
 
@@ -176,7 +32,6 @@
     public string EmergencyServicesLog { get; set; }
     public string FoodLog { get; set; }
     public string TransportLog { get; set; }
-
     protected override void OnInitialized()
     {
         CurrentSimulation = DisruptionApplied;
@@ -221,13 +76,13 @@
         CommunicationsDisrupted = true;
         CommunicationsLog = "Because of energy blackout some people are left with no internet or access to tv/radio";
         StateHasChanged();
-        await Task.Delay(1000);
+        await Task.Delay(1500);
         TransportDisrupted = true;
         TransportLog = "Electric Vehicle are unable to run, public transport schedules are inaccessible online to most as well as disruption notices because of unreliable communication infrastructure";
         EmergencyServicesDisrupted = true;
         EmergencyServicesLog = "Because of disruption on communication services people are not able to get in touch with emergency services, hospitals had to stop surgical procedures due to the lack of water";
         StateHasChanged();
-        await Task.Delay(1000);
+        await Task.Delay(1500);
         FoodDisrupted = true;
         FoodLog = "Some food outlets had to close because of the lack of water, panic buying of water has increased over the amount currently available in supermarkets/shops";
         StateHasChanged();
@@ -243,15 +98,15 @@
         WaterDisrupted = true;
         WaterLog = "Businesses and individuals using a decentralised water system are struggling to get water delivered and/or waste water collected";
         StateHasChanged();
-        await Task.Delay(1000);
+        await Task.Delay(1500);
         EmergencyServicesDisrupted = true;
         EmergencyServicesLog = "Hospitals are struggling to get medicines/food/equipment delivered and had to postpone some procedures. Emergency services are also being crippled by fuel shortages.";
         StateHasChanged();
-        await Task.Delay(1000);
+        await Task.Delay(1500);
         EnergyDisrupted = true;
         EnergyLog = "Fuel/coal/gas used for energy production is not arriving, load shedding is being performed on some parts of the country";
         StateHasChanged();        
-        await Task.Delay(1000);
+        await Task.Delay(1500);
         CommunicationsDisrupted = true;
         CommunicationsLog = "Because of load shedding some people are left with no internet or access to tv/radio for a few hours each day";
         StateHasChanged();
@@ -277,13 +132,13 @@
         CommunicationsDisrupted = true;
         CommunicationsLog = "Because of energy blackout most people are left with no internet or access to tv/radio";
         StateHasChanged();
-        await Task.Delay(1000);
+        await Task.Delay(1500);
         EmergencyServicesDisrupted = true;
         EmergencyServicesLog = "Because of disruption on communication services people are not able to get in touch with emergency services, hospitals had to stop surgical procedures due to the lack of treated water";
         TransportDisrupted = true;
         TransportLog = "Electric Vehicle are unable to run, public transport schedules are inaccessible online to most as well as disruption notices because of unreliable communication infrastructure";
         StateHasChanged();
-        await Task.Delay(1000);
+        await Task.Delay(1500);
         FoodDisrupted = true;
         FoodLog = "Because of disruption on distribution of drinkable water and state of panic demand for food/water has increased over the amount currently available in supermarkets/shops, shops are unable to refrigerate goods because of lack of electricity";
         StateHasChanged();
