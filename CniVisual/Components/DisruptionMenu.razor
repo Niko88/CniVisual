@@ -4,6 +4,7 @@
         <h3 class="h5">Disrupt</h3>
         @if (SimulationEnded)
         {
+            <div class="alert alert-info"><b>Instructions:</b>Click on one of the 3 available infrastructure to disrupt below to start a simulation highlighting their interdependencies</div>
             <div class="d-flex flex-row">
                 <div class="row mb-3">
                     <RadzenButton Click=@(args => Disrupt(DisruptionType.Energy) )  Image="images/energy.png" style="width: 217px;" ButtonStyle=@GetStyle(DisruptionType.Energy)>

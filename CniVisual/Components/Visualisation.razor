@@ -214,7 +214,7 @@
 
     private async Task InitiateWaterDisruption()
     {
-        WaterLog= "A ransomware attack has caused all system regulating water flow to be disabled";
+        WaterLog= "An attack on multiple water distribution systems has caused an halt on their operation, most people and businesses are left with no access to running water";
         await Task.Delay(1500);
         EnergyDisrupted = true;
         EnergyLog = "Energy production came to an halt in various generation facilities because water used for cooling stopped flowing, this is causing blackouts in certain areas";
@@ -222,6 +222,8 @@
         CommunicationsLog = "Because of energy blackout some people are left with no internet or access to tv/radio";
         StateHasChanged();
         await Task.Delay(1000);
+        TransportDisrupted = true;
+        TransportLog = "Electric Vehicle are unable to run, public transport schedules are inaccessible online to most as well as disruption notices because of unreliable communication infrastructure";
         EmergencyServicesDisrupted = true;
         EmergencyServicesLog = "Because of disruption on communication services people are not able to get in touch with emergency services, hospitals had to stop surgical procedures due to the lack of water";
         StateHasChanged();
@@ -274,6 +276,8 @@
         await Task.Delay(1000);
         EmergencyServicesDisrupted = true;
         EmergencyServicesLog = "Because of disruption on communication services people are not able to get in touch with emergency services, hospitals had to stop surgical procedures due to the lack of treated water";
+        TransportDisrupted = true;
+        TransportLog = "Electric Vehicle are unable to run, public transport schedules are inaccessible online to most as well as disruption notices because of unreliable communication infrastructure";
         StateHasChanged();
         await Task.Delay(1000);
         FoodDisrupted = true;
